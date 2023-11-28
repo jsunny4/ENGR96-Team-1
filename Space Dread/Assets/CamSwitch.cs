@@ -13,6 +13,7 @@ public class CamSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetButtonDown("1Key"))
         {
             cam1.SetActive(true);

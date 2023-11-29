@@ -26,6 +26,10 @@ public class SceneHandler : MonoBehaviour
     public readonly static string[,] nonAdjList = { { "","","D","" },
                                                     { "","","UD","" },
                                                     { "","","U",""} };
+                                                    
+    public readonly static string[,] dirToPlayer = { { "R","D","LR","D" },
+                                                     { "","R","","L" },
+                                                     { "","U","LR","U"} };
 
     public readonly static string gameOverSceneName = "Game Over";
 

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AlienController : MonoBehaviour
 {
-  [SerializeField] private GameObject alien;
   private float timer = 0.0f, waitTime;
+  private float actionTimeLowerBound = 6.0f, actoinTimeUpperBound = 8.0f;
 
   private GameObject[,] alienToggles = new GameObject[3,4];
   private Alien alien1 = new Alien();
@@ -25,7 +25,7 @@ public class AlienController : MonoBehaviour
     }
 
     // Initialize waitTime because Range() cannot be called in instance field initializer space
-    waitTime = UnityEngine.Random.Range(4.0f,6.0f);
+    waitTime = UnityEngine.Random.Range(actionTimeLowerBound, actoinTimeUpperBound);
   }
 
   // Update is called once per frame
@@ -38,7 +38,7 @@ public class AlienController : MonoBehaviour
       alien1.Action(alienToggles);
 
       timer -= waitTime;
-      waitTime = UnityEngine.Random.Range(4.0f,6.0f);
+      waitTime = UnityEngine.Random.Range(actionTimeLowerBound, actoinTimeUpperBound);
     }
   }
 }
@@ -122,6 +122,12 @@ class Alien {
 
       // If the program reaches this point, dir[i] is valid, add to dirs
       dirs.Add(i);
+
+      // Check if the dir is towards the player, if so add it again to increase the probability of stepping in the direction
+      string[,] dirToPlayer = SceneHandler.dirToPlayer;
+      for(int j=0; j<dirToPlayer[y,x].Length; j++){
+        if(dir[i]==dirToPlayer[y,x][j]) dirs.Add(i);
+      }
     }
 
     // If there is no dir to move in, return false

@@ -19,13 +19,15 @@ public class SceneHandler : MonoBehaviour
     * [ , , U, , ]
     */
     public readonly static (int,int) mapGridDims = (3, 4);
+    public readonly static (int,int) playerPos = (2,1);
     public readonly static char[,] mapGrid = { {'S','C','S','C'},
                                                {'N','C','X','C'},
                                                {'N','S','C','S'} };
     public readonly static string[,] nonAdjList = { { "","","D","" },
                                                     { "","","UD","" },
                                                     { "","","U",""} };
-    public bool [,] alienOccupation = new bool[3,5];
+
+    public readonly static string gameOverSceneName = "Game Over";
 
     // Start is called before the first frame update
     void Start()

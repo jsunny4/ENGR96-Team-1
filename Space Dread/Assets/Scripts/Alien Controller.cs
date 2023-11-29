@@ -1,13 +1,11 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class AlienController : MonoBehaviour
 {
   [SerializeField] private GameObject alien;
-  private float timer = 0.0f, waitTime = 2.0f;
+  private float timer = 0.0f, waitTime;
 
   private GameObject[,] alienToggles = new GameObject[3,4];
   private Alien alien1 = new Alien();
@@ -25,6 +23,9 @@ public class AlienController : MonoBehaviour
         alienToggles[row,col].SetActive(false);
       }
     }
+
+    // Initialize waitTime because Range() cannot be called in instance field initializer space
+    waitTime = UnityEngine.Random.Range(4.0f,6.0f);
   }
 
   // Update is called once per frame
@@ -37,6 +38,7 @@ public class AlienController : MonoBehaviour
       alien1.Action(alienToggles);
 
       timer -= waitTime;
+      waitTime = UnityEngine.Random.Range(4.0f,6.0f);
     }
   }
 }
@@ -121,11 +123,6 @@ class Alien {
       // If the program reaches this point, dir[i] is valid, add to dirs
       dirs.Add(i);
     }
-    if(Position==(2,2) || Position==(2,0) || Position==(1,2)){
-      foreach(int dire in dirs){
-        Debug.Log(dir[dire]);
-      }
-    }
 
     // If there is no dir to move in, return false
     if(dirs.Count==0) return false;
@@ -144,8 +141,17 @@ class Alien {
   }
 
   // Wrapper for an alien action to either spawn or move
+  // Also handles lose condition
   public bool Action(GameObject[,] alienToggles){
-    if(!IfExist || Position==(-1,-1)) return Spawn(alienToggles);
-    else return Move(alienToggles);
+    bool ActSuccess = false;
+    if(!IfExist || Position==(-1,-1)) ActSuccess = Spawn(alienToggles);
+    else ActSuccess = Move(alienToggles);
+
+    // Load Game Over Scene if alien reaches player position
+    if(Position==SceneHandler.playerPos){
+      SceneManager.LoadScene(SceneHandler.gameOverSceneName);
+    }
+
+    return ActSuccess;
   }
 }

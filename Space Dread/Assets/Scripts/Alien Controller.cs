@@ -126,7 +126,10 @@ class Alien {
       // Check if the dir is towards the player, if so add it again to increase the probability of stepping in the direction
       string[,] dirToPlayer = SceneHandler.dirToPlayer;
       for(int j=0; j<dirToPlayer[y,x].Length; j++){
-        if(dir[i]==dirToPlayer[y,x][j]) dirs.Add(i);
+        if(dir[i]==dirToPlayer[y,x][j]){
+          dirs.Add(i);
+          dirs.Add(i);
+        }
       }
     }
 

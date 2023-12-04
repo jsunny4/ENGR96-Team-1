@@ -9,6 +9,8 @@ public class CamSwitch : MonoBehaviour
     public GameObject cam3;
     public GameObject cam4;
     public GameObject cam5;
+    public GameObject cam6;
+    public GameObject cam7;
 
     // Update is called once per frame
     void Update()
@@ -21,6 +23,8 @@ public class CamSwitch : MonoBehaviour
             cam3.SetActive(false);
             cam4.SetActive(false);
             cam5.SetActive(false);
+            cam6.SetActive(false);
+            cam7.SetActive(false);
         }
 
         if (Input.GetButtonDown("2Key"))
@@ -30,6 +34,8 @@ public class CamSwitch : MonoBehaviour
             cam3.SetActive(false);
             cam4.SetActive(false);
             cam5.SetActive(false);
+            cam6.SetActive(false);
+            cam7.SetActive(false);
         }
 
         if (Input.GetButtonDown("3Key"))
@@ -39,6 +45,8 @@ public class CamSwitch : MonoBehaviour
             cam3.SetActive(true);
             cam4.SetActive(false);
             cam5.SetActive(false);
+            cam6.SetActive(false);
+            cam7.SetActive(false);
         }
 
         if (Input.GetButtonDown("4Key"))
@@ -48,6 +56,8 @@ public class CamSwitch : MonoBehaviour
             cam3.SetActive(false);
             cam4.SetActive(true);
             cam5.SetActive(false);
+            cam6.SetActive(false);
+            cam7.SetActive(false);
         }
 
         if (Input.GetButtonDown("5Key"))
@@ -57,6 +67,30 @@ public class CamSwitch : MonoBehaviour
             cam3.SetActive(false);
             cam4.SetActive(false);
             cam5.SetActive(true);
+            cam6.SetActive(false);
+            cam7.SetActive(false);
+        }
+
+        if (Input.GetButtonDown("6Key"))
+        {
+            cam1.SetActive(false);
+            cam2.SetActive(false);
+            cam3.SetActive(false);
+            cam4.SetActive(false);
+            cam5.SetActive(false);
+            cam6.SetActive(true);
+            cam7.SetActive(false);
+        }
+
+        if (Input.GetButtonDown("7Key"))
+        {
+            cam1.SetActive(false);
+            cam2.SetActive(false);
+            cam3.SetActive(false);
+            cam4.SetActive(false);
+            cam5.SetActive(false);
+            cam6.SetActive(false);
+            cam7.SetActive(true);
         }
     }
 }

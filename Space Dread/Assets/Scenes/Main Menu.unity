@@ -598,7 +598,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Press 1 to turn left. Press 2 to return back.
+  m_text: 'Press 2 to turn left. Press 1 to return back.
 
 
     Click on the monitors

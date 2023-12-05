@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class PlayerController : MonoBehaviour
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        temp += 0.001;
+        temp += 0.005;
         SetTempText();
         if (Input.GetMouseButtonDown(0))
         {
@@ -54,10 +54,10 @@ public class PlayerController : MonoBehaviour
     {
         countText.text = "Temp: " + ((int)temp).ToString();
 
- if (temp >= 150)
+ if (temp >= 120)
         {
  // Display the lose text.
-            //loseTextObject.SetActive(true);
+        SceneManager.LoadScene("Game Over");
         }
     }
 

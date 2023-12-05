@@ -24,7 +24,7 @@ public class PumpController : MonoBehaviour
         if (!hasTriggered)
         {
             // Change your variable here
-            p.temp -= 4;
+            p.temp -= 5;
             if (p.temp < 50) {
                 p.temp = 50;
             }

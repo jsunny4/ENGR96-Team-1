@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public double temp;
     public TextMeshProUGUI countText;
     public PumpController pp;
-
+    public CamSwitch cs;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
         SetTempText();
         if (Input.GetMouseButtonDown(0))
         {
+            Camera currentCamera = Camera.current;
             // Create a ray from the camera through the mouse position
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -45,6 +46,31 @@ public class PlayerController : MonoBehaviour
                 {
                     Debug.Log("Object Clicked!");
                     pp.OnClick();
+                }
+                if (hit.collider.gameObject.name == "left monitor overlay")
+                {
+                    Debug.Log("Object Clicked!");
+                    cs.OnClick(5);
+                }
+                if (hit.collider.gameObject.name == "middle monitor overlay")
+                {
+                    Debug.Log("Object Clicked!");
+                    cs.OnClick(6);
+                }
+                if (hit.collider.gameObject.name == "right monitor overlay")
+                {
+                    Debug.Log("Object Clicked!");
+                    cs.OnClick(7);
+                }
+                if (hit.collider.gameObject.name == "middle pc monitor overlay")
+                {
+                    Debug.Log("Object Clicked!");
+                    cs.OnClick(4);
+                }
+                if (hit.collider.gameObject.name == "right pc monitor overlay")
+                {
+                    Debug.Log("Object Clicked!");
+                    cs.OnClick(3);
                 }
             }
         }

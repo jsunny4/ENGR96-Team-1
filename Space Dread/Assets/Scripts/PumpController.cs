@@ -24,8 +24,10 @@ public class PumpController : MonoBehaviour
         if (!hasTriggered)
         {
             // Change your variable here
-            p.temp -= 2;
-
+            p.temp -= 4;
+            if (p.temp < 50) {
+                p.temp = 50;
+            }
             // Set the flag to true to prevent further changes
             hasTriggered = true;
             StartCoroutine(ResetFlagAfterTime());

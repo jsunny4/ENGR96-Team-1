@@ -648,12 +648,19 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Press 1, 2, 3, 4, 5, 6, and 7 keys on keyboard to switch cameras.
+  m_text: 'Press 1 to turn left. Press 2 to return back.
+
+
+    Click on the monitors
+    to change cameras. Click on the flashlight button to activate a camera''s flashlight.
+
+
+    Click
+    on the pump to decrease the temperature, don''t let it get too hot!
 
 
     Make
-    sure the alien doesn''t reach your room by activating the camera''s light at
-    it when you see it.'
+    sure the aliens don''t get close to you and survive the round!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -680,8 +687,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

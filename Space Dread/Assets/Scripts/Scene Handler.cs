@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,6 +29,14 @@ public class SceneHandler : MonoBehaviour
     public readonly static string[,] dirToPlayer = { { "R","D","LR","D" },
                                                      { "","R","","L" },
                                                      { "","U","LR","U"} };
+
+    public readonly static Dictionary<string, (int,int)[]> despawnDict = new Dictionary<string, (int, int)[]>(){
+        {"Spot Light docking bay", new[] {(0,0)}},
+        {"Spot Light storage", new[] {(1,0), (2,0)}},
+        {"hallway spotlight", new[] {(3,0), (3,1)}},
+        {"Spot Light engine", new[] {(1,2)}},
+        {"Spot Light oxygen", new[] {(3,2)}}
+    };
 
     public readonly static string gameOverSceneName = "Game Over";
 

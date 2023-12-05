@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Alien Placeholder
+  - Spot Light
   layers:
   - Default
   - TransparentFX

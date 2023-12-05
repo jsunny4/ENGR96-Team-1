@@ -1,13 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class AlienController : MonoBehaviour
 {
-  private float timer = 0.0f, waitTime;
+  private float timer = 0.0f, waitTime, initialWaitTime = 100.0f;
   private float actionTimeLowerBound = 6.0f, actoinTimeUpperBound = 8.0f;
 
   private GameObject[,] alienToggles = new GameObject[3,4];
+  private GameObject[] spotLights;
   private Alien alien1 = new Alien();
   
   // Start is called before the first frame update
@@ -24,6 +26,12 @@ public class AlienController : MonoBehaviour
       }
     }
 
+    //Populate spotLights
+    spotLights = GameObject.FindGameObjectsWithTag("Spot Light");
+    foreach(GameObject spotlight in spotLights){
+      spotlight.GetComponent<Light>().intensity = 1;
+    }
+
     // Initialize waitTime because Range() cannot be called in instance field initializer space
     waitTime = UnityEngine.Random.Range(actionTimeLowerBound, actoinTimeUpperBound);
   }
@@ -33,12 +41,27 @@ public class AlienController : MonoBehaviour
   {
     (int numRows, int numCols) = SceneHandler.mapGridDims;
 
+    foreach(GameObject spotlight in spotLights){
+      Light light = spotlight.GetComponent<Light>();
+
+      if(light.intensity>1){
+        foreach((int,int) despawnPos in SceneHandler.despawnDict[spotlight.name]){
+          // Unspawn alien if it is in the position where it is flashed
+          if(alien1.Position==despawnPos){
+            alien1.Unspawn(alienToggles);
+            waitTime += 2.0f;
+          } 
+        }
+      }
+    }
+
     timer += Time.deltaTime;
-    if(timer>waitTime){
+    if(timer>waitTime+initialWaitTime){
       alien1.Action(alienToggles);
 
-      timer -= waitTime;
+      timer -= waitTime+initialWaitTime;
       waitTime = UnityEngine.Random.Range(actionTimeLowerBound, actoinTimeUpperBound);
+      initialWaitTime = 0;
     }
   }
 }
@@ -78,6 +101,8 @@ class Alien {
     (int x, int y) = spawns[chosenInd];
     Position = (x,y);
     alienToggles[y,x].SetActive(true);
+
+    Debug.Log("Alien spawn at (" + (y+1).ToString() + "," + (x+1).ToString() + ")");
     
     return true;
   }
@@ -91,6 +116,8 @@ class Alien {
     (int x, int y) = Position;
     alienToggles[y,x].SetActive(false);
     Position = (-1,-1);
+
+    Debug.Log("Alien unspawn from (" + (y+1).ToString() + "," + (x+1).ToString() + ")");
 
     return true;
   }

@@ -76,14 +76,14 @@ public class PlayerController : MonoBehaviour
         }
     }
     //Displays current temp
- void SetTempText() 
+    void SetTempText()
     {
         countText.text = "Temp: " + ((int)temp).ToString();
 
- if (temp >= 120)
+        if (temp >= 120)
         {
- // Display the lose text.
-        SceneManager.LoadScene("Game Over");
+            // Display the lose text.
+            SceneManager.LoadScene("Game Over");
         }
     }
 

@@ -21,7 +21,7 @@ public class SceneHandler : MonoBehaviour
     public readonly static (int,int) playerPos = (2,1);
     public readonly static char[,] mapGrid = { {'S','C','S','C'},
                                                {'N','C','X','C'},
-                                               {'N','S','C','S'} };
+                                               {'N','C','S','C'} };
     public readonly static string[,] nonAdjList = { { "","","D","" },
                                                     { "","","UD","" },
                                                     { "","","U",""} };
@@ -39,6 +39,7 @@ public class SceneHandler : MonoBehaviour
     };
 
     public readonly static string gameOverSceneName = "Game Over";
+    public readonly static string gameWinSceneName = "Game Win";
 
     // Start is called before the first frame update
     void Start()

@@ -5,7 +5,8 @@ using Unity.VisualScripting;
 
 public class AlienController : MonoBehaviour
 {
-  private float timer = 0.0f, waitTime, initialWaitTime = 100.0f;
+  private float timer = 0.0f, totalTime = 0.0f;
+  private float waitTime, initialWaitTime = 100.0f, gameEndTime = 160.0f;
   private float actionTimeLowerBound = 6.0f, actoinTimeUpperBound = 8.0f;
 
   private GameObject[,] alienToggles = new GameObject[3,4];
@@ -59,6 +60,13 @@ public class AlienController : MonoBehaviour
     if(timer>waitTime+initialWaitTime){
       alien1.Action(alienToggles);
 
+      // Check if enough time has elapsed for the game to end
+      totalTime += timer;
+      if(totalTime >= gameEndTime){
+        SceneManager.LoadScene(SceneHandler.gameWinSceneName);
+      }
+
+      // Else continue the game
       timer -= waitTime+initialWaitTime;
       waitTime = UnityEngine.Random.Range(actionTimeLowerBound, actoinTimeUpperBound);
       initialWaitTime = 0;

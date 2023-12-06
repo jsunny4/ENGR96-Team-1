@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         temp += 0.005;
         SetTempText();
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !PauseMenu.isPaused)
         {
             Camera currentCamera = Camera.current;
             // Create a ray from the camera through the mouse position

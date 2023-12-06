@@ -23,9 +23,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(PauseMenu.isPaused) return;
+
         temp += 0.005;
         SetTempText();
-        if (Input.GetMouseButtonDown(0) && !PauseMenu.isPaused)
+        if (Input.GetMouseButtonDown(0))
         {
             Camera currentCamera = Camera.current;
             // Create a ray from the camera through the mouse position
